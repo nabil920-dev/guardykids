@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import guardyIcon from '../guardy_icon.svg';
+import guardyIcon from '../guardykids_logo.png';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -25,8 +25,8 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner">
         <Link to="/" className="navbar-logo">
-          <img src={guardyIcon} alt="GuardyKids" style={{ width: 36, height: 36, borderRadius: 8 }} />
-          Guardy<span>Kids</span>
+          <img src={guardyIcon} alt="GuardyKids" style={{ width: 295, height: 90, borderRadius: 8 ,marginBottom: -15 }} />
+          
         </Link>
 
         <div className="navbar-links">

@@ -74,13 +74,8 @@ export default function Login() {
           <Link to="/register" style={{ color: 'var(--green)', fontWeight: 600 }}>S'inscrire</Link>
         </div>
 
-        <div className="divider" />
-        <div style={{ fontSize: 12, color: 'var(--gray-500)', textAlign: 'center' }}>
-          <strong>Comptes de démonstration :</strong><br />
-          Admin: admin@guardykids.ma / admin123<br />
-          Parent: parent@guardykids.ma / parent123<br />
-          Garderie: owner@guardykids.ma / owner123
-        </div>
+      
+        
       </div>
     </div>
   );
