@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Nursery extends Model
 {
     use HasFactory;
+
+    /**
+     * Always expose a ready-to-use, absolute image URL in JSON responses.
+     */
+    protected $appends = ['image_url'];
 
     protected $fillable = [
         'owner_id',
@@ -31,6 +37,17 @@ class Nursery extends Model
         'hourly_price' => 'float',
         'capacity'     => 'integer',
     ];
+
+    /**
+     * Full public URL for the stored image (null when no image was uploaded).
+     * Relies on `php artisan storage:link` and the "public" disk URL.
+     */
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image
+            ? Storage::disk('public')->url($this->image)
+            : null;
+    }
 
     public function owner()
     {

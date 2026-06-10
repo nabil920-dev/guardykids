@@ -71,8 +71,8 @@ export default function NurseryDetail() {
         <div>
           <div className="card" style={{ marginBottom: 20 }}>
             <div style={{ height: 260, background: 'var(--green-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 80 }}>
-              {nursery.image
-                ? <img src={`http://localhost:8000/storage/${nursery.image}`} alt={nursery.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {nursery.image_url
+                ? <img src={nursery.image_url} alt={nursery.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 : '🏠'}
             </div>
             <div className="card-body">

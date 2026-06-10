@@ -56,8 +56,8 @@ class AdminController extends Controller
             'neighborhood' => 'sometimes|string|max:100',
             'capacity'     => 'sometimes|integer|min:1',
             'hourly_price' => 'sometimes|numeric|min:0',
-            'opening_time' => 'sometimes|date_format:H:i',
-            'closing_time' => 'sometimes|date_format:H:i',
+            'opening_time' => 'sometimes|date_format:H:i,H:i:s',
+            'closing_time' => 'sometimes|date_format:H:i,H:i:s',
         ]);
         $nursery->update($validated);
         return response()->json($nursery->fresh('owner:id,first_name,last_name'));

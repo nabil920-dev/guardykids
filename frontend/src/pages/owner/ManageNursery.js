@@ -53,15 +53,18 @@ export default function ManageNursery() {
 
       if (nursery) {
         data.append('_method', 'PUT');
-        await api.post(`/nurseries/${nursery.id}`, data, {
+        const res = await api.post(`/nurseries/${nursery.id}`, data, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
+        setNursery(res.data);
         setSuccess('Garderie mise à jour avec succès.');
       } else {
         const res = await api.post('/nurseries', data, { headers: { 'Content-Type': 'multipart/form-data' } });
         setNursery(res.data);
         setSuccess('Garderie créée avec succès.');
       }
+      // Reset the file input state so the freshly-saved image_url is what shows.
+      setImageFile(null);
     } catch (err) {
       if (err.response?.data?.errors) setErrors(err.response.data.errors);
       else setErrors({ general: err.response?.data?.message || 'Une erreur est survenue.' });
@@ -154,8 +157,8 @@ export default function ManageNursery() {
             <div className="form-group">
               <label className="form-label">Photo de la garderie</label>
               <input type="file" className="form-control" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
-              {nursery?.image && (
-                <img src={`http://localhost:8000/storage/${nursery.image}`} alt="" style={{ marginTop: 8, height: 80, borderRadius: 6 }} />
+              {nursery?.image_url && (
+                <img src={nursery.image_url} alt="" style={{ marginTop: 8, height: 80, borderRadius: 6 }} />
               )}
             </div>
 

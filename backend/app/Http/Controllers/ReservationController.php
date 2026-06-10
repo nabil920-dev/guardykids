@@ -38,7 +38,9 @@ class ReservationController extends Controller
 
         $start    = \Carbon\Carbon::createFromFormat('H:i', $validated['start_time']);
         $end      = \Carbon\Carbon::createFromFormat('H:i', $validated['end_time']);
-        $duration = round($end->diffInMinutes($start) / 60, 2);
+        // true = absolute value, so the duration is always positive
+        // (validation already guarantees end_time is after start_time).
+        $duration = round($start->diffInMinutes($end, true) / 60, 2);
         $price    = round($duration * $nursery->hourly_price, 2);
 
         $reservation = Reservation::create([

@@ -106,8 +106,8 @@ export default function Nurseries() {
             {filtered.map((n) => (
               <div key={n.id} className="nursery-card">
                 <div className="nursery-card-img">
-                  {n.image
-                    ? <img src={`http://localhost:8000/storage/${n.image}`} alt={n.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  {n.image_url
+                    ? <img src={n.image_url} alt={n.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     : '🏠'
                   }
                 </div>

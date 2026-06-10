@@ -82,8 +82,8 @@ class NurseryController extends Controller
             'longitude'    => 'nullable|numeric',
             'capacity'     => 'sometimes|integer|min:1',
             'hourly_price' => 'sometimes|numeric|min:0',
-            'opening_time' => 'sometimes|date_format:H:i',
-            'closing_time' => 'sometimes|date_format:H:i',
+            'opening_time' => 'sometimes|date_format:H:i,H:i:s',
+            'closing_time' => 'sometimes|date_format:H:i,H:i:s',
             'image'        => 'nullable|image|max:2048',
         ]);
 
