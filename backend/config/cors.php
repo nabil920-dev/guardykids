@@ -15,11 +15,16 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'storage/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000'],
+    // Local dev origin + any production origins from FRONTEND_URL
+    // (comma-separated, e.g. "https://app.vercel.app,https://www.guardykids.ma").
+    'allowed_origins' => array_values(array_unique(array_filter(array_merge(
+        ['http://localhost:3000'],
+        array_map('trim', explode(',', (string) env('FRONTEND_URL', ''))),
+    )))),
 
     'allowed_origins_patterns' => [],
 

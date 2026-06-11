@@ -21,13 +21,19 @@ class DemoSeeder extends Seeder
     public function run(): void
     {
         // 1) Shared picture for the 5 nurseries.
-        //    Reuse an already-uploaded image, copied under a stable name.
+        //    Use the demo image bundled with the repo so it works on a fresh
+        //    deploy; fall back to any already-uploaded image if present.
         $image = 'nurseries/demo.jpg';
         if (! Storage::disk('public')->exists($image)) {
-            $existing = collect(Storage::disk('public')->files('nurseries'))
-                ->first(fn ($f) => $f !== $image);
-            if ($existing) {
-                Storage::disk('public')->copy($existing, $image);
+            $bundled = database_path('seeders/assets/demo-nursery.jpg');
+            if (file_exists($bundled)) {
+                Storage::disk('public')->put($image, file_get_contents($bundled));
+            } else {
+                $existing = collect(Storage::disk('public')->files('nurseries'))
+                    ->first(fn ($f) => $f !== $image);
+                if ($existing) {
+                    Storage::disk('public')->copy($existing, $image);
+                }
             }
         }
 
