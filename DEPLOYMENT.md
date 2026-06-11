@@ -27,7 +27,7 @@ seeders with a bundled demo image) is already configured. Follow the steps below
    ```
    APP_NAME=GuardyKids
    APP_ENV=production
-   APP_KEY=base64:EP2MbH4mXx9+euc1/NYXAsaP2hklORLzipSN7n/vQzg=
+   APP_KEY=base64:GENERATE_ME
    APP_DEBUG=false
    APP_URL=https://REPLACE_AFTER_DOMAIN.up.railway.app
 
@@ -47,8 +47,8 @@ seeders with a bundled demo image) is already configured. Follow the steps below
    FRONTEND_URL=http://localhost:3000
    ```
 
-   > `APP_KEY` above is your existing local key — fine to reuse, or generate a
-   > new one with `php artisan key:generate --show`.
+   > Generate the `APP_KEY` value by running `php artisan key:generate --show`
+   > in `backend/` and paste the `base64:...` output (never commit it to git).
 
 6. **Networking → Generate Domain**. When asked for the port, use **8080**.
    Copy the generated URL (e.g. `https://guardykids-production.up.railway.app`).
